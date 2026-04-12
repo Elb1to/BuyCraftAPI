@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id "com.github.johnrengelman.shadow" version "8.1.1"
+    id "com.gradleup.shadow" version "9.2.2"
 }
 
 repositories {
@@ -14,8 +14,9 @@ repositories {
         url = uri('https://repo.papermc.io/repository/maven-public/')
     }
 
-    maven { url 'https://jitpack.io' }
-
+    maven {
+        url = uri('https://jitpack.io')
+    }
 
     maven {
         url = uri('https://repo.extendedclip.com/content/repositories/placeholderapi/')
@@ -30,7 +31,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 
     compileOnly("org.bstats:bstats-bukkit:3.0.1")
-    compileOnly 'io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT'
+    compileOnly 'io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7.1'
     compileOnly 'me.clip:placeholderapi:2.11.5'
     compileOnly files('libraries/tebex-bukkit-2.0.0.jar')
@@ -73,7 +74,7 @@ build.dependsOn(shadowJar)
 
 group = 'org.metadevs.buycraftapi'
 description = 'BuyCraftAPI'
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 publishing {
     publications {
