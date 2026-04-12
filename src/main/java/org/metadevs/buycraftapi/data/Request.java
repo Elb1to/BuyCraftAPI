@@ -17,7 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import static java.lang.Thread.sleep;
 
@@ -165,7 +169,6 @@ public class Request {
             } catch (Exception e) {
                 buyCraftAPI.getLogger().info("Error: " + e.getMessage());
             }
-
         }
 
         return payments;
@@ -215,12 +218,10 @@ public class Request {
     }
 
     public UUID convertUUID(String uuid) {
-        return java.util.UUID.fromString(
+	    return UUID.fromString(
                 uuid.replaceFirst(
                         "(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)", "$1-$2-$3-$4-$5"
                 )
         );
     }
-
-
 }

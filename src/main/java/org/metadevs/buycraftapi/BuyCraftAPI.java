@@ -25,7 +25,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 @Getter
 public class BuyCraftAPI extends PlaceholderExpansion implements Taskable, Configurable {
 
@@ -49,7 +48,6 @@ public class BuyCraftAPI extends PlaceholderExpansion implements Taskable, Confi
         }
     }
 
-
     @Override
     public boolean canRegister() {
         logger = Logger.getLogger("BuycraftAPI");
@@ -57,7 +55,6 @@ public class BuyCraftAPI extends PlaceholderExpansion implements Taskable, Confi
         configManager = new ConfigManager(this);
 
         final String key = provider.getKey();
-
         if (key == null || key.isEmpty() || key.equals("INVALID")) {
             logger.severe("Server key is not set. Please set it in the BuyCraft/Tebex config.yml");
             return false;
@@ -71,11 +68,9 @@ public class BuyCraftAPI extends PlaceholderExpansion implements Taskable, Confi
         return "AlexDev_";
     }
 
-
     public @NotNull String getIdentifier() {
         return "buycraftapi";
     }
-
 
     public @NotNull String getVersion() {
         try {
@@ -91,7 +86,6 @@ public class BuyCraftAPI extends PlaceholderExpansion implements Taskable, Confi
         return placeholdersManager.onPlaceholderRequest(p, identifier);
     }
 
-
     private void vaultHook() {
         if (Bukkit.getPluginManager().isPluginEnabled("Vault")) {
             if (setupPermissions()) {
@@ -100,11 +94,13 @@ public class BuyCraftAPI extends PlaceholderExpansion implements Taskable, Confi
         }
     }
 
-
     private boolean setupPermissions() {
         try {
             RegisteredServiceProvider<Permission> rsp = Bukkit.getServer().getServicesManager().getRegistration(Permission.class);
-            if (rsp == null) return false;
+            if (rsp == null) {
+                return false;
+            }
+
             perms = rsp.getProvider();
             return true;
         } catch (Exception e) {

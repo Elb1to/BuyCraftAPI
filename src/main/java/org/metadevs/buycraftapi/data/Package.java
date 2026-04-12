@@ -1,8 +1,6 @@
 package org.metadevs.buycraftapi.data;
 
-
 import lombok.Data;
-
 
 @Data
 public class Package {

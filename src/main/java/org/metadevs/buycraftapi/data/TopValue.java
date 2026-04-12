@@ -12,5 +12,4 @@ public class TopValue {
     private String name;
     private UUID uuid;
     private double amount;
-
 }

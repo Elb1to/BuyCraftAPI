@@ -1,8 +1,9 @@
 package org.metadevs.buycraftapi.tasks;
 
-import org.metadevs.buycraftapi.BuyCraftAPI;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
+import org.metadevs.buycraftapi.BuyCraftAPI;
+
 import java.util.concurrent.TimeUnit;
 
 public class Tasks {
@@ -13,6 +14,7 @@ public class Tasks {
     public Tasks(BuyCraftAPI buyCraftAPI, Plugin placeholderapi) {
         this.buyCraftAPI = buyCraftAPI;
         this.placeholderapi = placeholderapi;
+
         loadAPITask();
     }
 
@@ -20,10 +22,9 @@ public class Tasks {
         buyCraftAPI.getLogger().info("Loading API Tasks...");
         
         Runnable task = () -> {
-            if(!buyCraftAPI.isRegistered()) {
+	        if (!buyCraftAPI.isRegistered()) {
                 return;
             }
-            
             if (buyCraftAPI.getQuery() == null) {
                 buyCraftAPI.getLogger().warning("Query not initialized yet, skipping payment load");
                 return;
@@ -32,12 +33,10 @@ public class Tasks {
             long start = System.currentTimeMillis();
             buyCraftAPI.getLogger().info("Loading payments...");
             buyCraftAPI.getQuery().loadPayments().thenAccept(success -> {
-                if (success) {
-                    long end = System.currentTimeMillis();
-                    buyCraftAPI.getLogger().info("Successfully loaded payments in " + (end - start) + "ms");
-                } else {
-                    buyCraftAPI.getLogger().info("Failed to load payments");
-                }
+	            buyCraftAPI.getLogger().info(success
+			            ? "Successfully loaded payments in " + (System.currentTimeMillis() - start) + "ms"
+			            : "Failed to load payments"
+	            );
             }).exceptionally(throwable -> {
                 buyCraftAPI.getLogger().log(java.util.logging.Level.SEVERE, "Failed to load payments", throwable);
                 return null;
@@ -45,7 +44,7 @@ public class Tasks {
         };
 
         Bukkit.getAsyncScheduler().runAtFixedRate(placeholderapi, scheduledTask -> {
-            if(!buyCraftAPI.isRegistered()) {
+            if (!buyCraftAPI.isRegistered()) {
                 scheduledTask.cancel();
                 return;
             }

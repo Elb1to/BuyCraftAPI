@@ -19,6 +19,4 @@ public class Payment {
     private final String name;
     private final UUID uuid;
     private final List<Package> packages;
-
-
 }

@@ -8,5 +8,4 @@ import lombok.RequiredArgsConstructor;
 public abstract class Provider {
 
     private final String key;
-
 }
