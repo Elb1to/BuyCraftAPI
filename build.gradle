@@ -30,10 +30,9 @@ repositories {
 dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 
-    compileOnly("org.bstats:bstats-bukkit:3.0.1")
     compileOnly 'io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7.1'
-    compileOnly 'me.clip:placeholderapi:2.11.5'
+    compileOnly 'me.clip:placeholderapi:2.12.2'
     compileOnly files('libraries/tebex-bukkit-2.4.0-974a9d5.jar')
     compileOnly files('libraries/BuycraftX.jar')
     compileOnly 'org.projectlombok:lombok:1.18.30'
@@ -47,7 +46,6 @@ shadowJar {
     relocate('okhttp3', 'org.metadevs.buycraftapi.libraries.okhttp3')
     relocate('okio', 'org.metadevs.buycraftapi.libraries.okio')
     relocate('kotlin', 'org.metadevs.buycraftapi.libraries.kotlin')
-    relocate("org.bstats", "me.clip.placeholderapi.metrics")
     relocate('org.jetbrains.annotations', 'org.metadevs.buycraftapi.libraries.jetbrains.annotations')
 
     minimize()

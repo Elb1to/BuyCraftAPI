@@ -4,8 +4,6 @@ import lombok.Getter;
 import me.clip.placeholderapi.expansion.Configurable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Taskable;
-import org.bstats.bukkit.Metrics;
-import org.bstats.charts.MultiLineChart;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -20,7 +18,6 @@ import org.metadevs.buycraftapi.providers.Provider;
 import org.metadevs.buycraftapi.providers.TebexProvider;
 import org.metadevs.buycraftapi.tasks.Tasks;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -115,16 +112,6 @@ public class BuyCraftAPI extends PlaceholderExpansion implements Taskable, Confi
         placeholdersManager = new Placeholders(this);
         
         new Tasks(this, getPlaceholderAPI());
-
-        int pluginId = 10173;
-        final Metrics metrics = new Metrics(getPlaceholderAPI(), pluginId);
-
-        metrics.addCustomChart(new MultiLineChart("players_and_servers", () -> {
-            HashMap<String, Integer> valueMap = new HashMap<>();
-            valueMap.put("servers", 1);
-            valueMap.put("players", Bukkit.getOnlinePlayers().size());
-            return valueMap;
-        }));
 
         vaultHook();
     }
