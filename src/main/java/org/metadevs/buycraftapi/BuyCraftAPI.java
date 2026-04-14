@@ -4,8 +4,8 @@ import lombok.Getter;
 import me.clip.placeholderapi.expansion.Configurable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Taskable;
-import me.clip.placeholderapi.metrics.bukkit.Metrics;
-import me.clip.placeholderapi.metrics.charts.MultiLineChart;
+import org.bstats.bukkit.Metrics;
+import org.bstats.charts.MultiLineChart;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -112,6 +112,7 @@ public class BuyCraftAPI extends PlaceholderExpansion implements Taskable, Confi
     public void start() {
         request = new Request(provider.getKey(), this);
         query = new Query(this);
+        placeholdersManager = new Placeholders(this);
         
         new Tasks(this, getPlaceholderAPI());
 
@@ -126,7 +127,6 @@ public class BuyCraftAPI extends PlaceholderExpansion implements Taskable, Confi
         }));
 
         vaultHook();
-        placeholdersManager = new Placeholders(this);
     }
 
     @Override
