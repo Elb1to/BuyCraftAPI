@@ -34,7 +34,7 @@ dependencies {
     compileOnly 'io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7.1'
     compileOnly 'me.clip:placeholderapi:2.11.5'
-    compileOnly files('libraries/tebex-bukkit-2.0.0.jar')
+    compileOnly files('libraries/tebex-bukkit-2.4.0-974a9d5.jar')
     compileOnly files('libraries/BuycraftX.jar')
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
@@ -75,6 +75,12 @@ build.dependsOn(shadowJar)
 group = 'org.metadevs.buycraftapi'
 description = 'BuyCraftAPI'
 java.sourceCompatibility = JavaVersion.VERSION_21
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 publishing {
     publications {
